@@ -11,9 +11,6 @@ const useStyles = makeStyles({
     root: {
         minWidth: 275
     },
-    title: {
-        fontSize: 14
-    }
 })
 
 const NewsItem = ({ singleNews }) => {
@@ -21,14 +18,14 @@ const classes = useStyles();
         return (
             <Card className={classes.root} key={singleNews.id}>
                 <CardHeader title={singleNews.title}/>
-                <CardMedia style={{height: "150px"}} image={singleNews.urlToImage} alt={singleNews.title}/>
+                <CardMedia component="img" style={{height: "100%"}} image={singleNews.urlToImage} alt={singleNews.title}/>
                 <CardContent>
                     <Typography variant="body2" component="p">
                         {singleNews.description}
                     </Typography>
                 </CardContent>
-                <Button size="small" color="primary" variant="outlined">  
-                    <Link to={"/news/" + singleNews.id}>
+                <Button size="small" color="primary" variant="outlined" >  
+                    <Link underline="none" to={"/news/" + singleNews.id} >
                         Show more
                     </Link>
                 </Button>

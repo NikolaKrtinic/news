@@ -25,8 +25,7 @@ const useStyles = makeStyles({
     border: 'solid black 1px'
   },
   img: {
-    maxWidth: '100%',
-    height: 'auto'
+    height: '100%',
   },
 });
 
@@ -46,7 +45,7 @@ const NewsDetails = () => {
     }, [dispatch,currentId]);
         
     return (
-      <>
+      <div style={{width: '1000px', margin: 'auto'}}> 
         {loading ? "Loading..." : error ? error.message : 
         <Card className={classes.root}>
           <CardContent>
@@ -58,7 +57,6 @@ const NewsDetails = () => {
               component="img"
               alt={singleNews.title}
               image={singleNews.urlToImage}
-              width="460" height="345"
             />
             <CardContent className={classes.typography}>
             <Typography variant="body1" component="p" >
@@ -67,9 +65,9 @@ const NewsDetails = () => {
           </CardContent>
           <Button onClick={ ()=>history.goBack() }size="small" color="primary" variant="outlined">
             Back to list
-        </Button>
-    </Card>}  
-      </>
+          </Button>
+        </Card>}  
+      </div>
     );
 }
 

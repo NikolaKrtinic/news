@@ -1,30 +1,40 @@
-import { AppBar, Button, Toolbar } from '@material-ui/core';
+import { AppBar, Button, Toolbar, Grid } from '@material-ui/core';
 import React from 'react';
+import { useLocation } from "react-router-dom";
 
-const Header = ({ clicked, disable, country, onCountryChange}) => {
+const Header = ({ country, onCountryChange}) => {
     
+    let location = useLocation();
+
+    const isDisabled = location.pathname.includes("/news/");
  
     const buttons = () => {
         return (
         <div>
-            <button disabled={!disable} onClick={() => onCountryChange(country='gb', !disable)}>GB</button>
-            <button disabled={disable} onClick={() => onCountryChange(country='us', !disable)}>US</button>
+            <Button variant="contained" color="primary" disabled={isDisabled} onClick={() => onCountryChange(country='gb')}>GB</Button>
+            <Button variant="contained" color="primary" disabled={isDisabled} onClick={() => onCountryChange(country='us')}>US</Button>
         </div>
         ) 
     }
     return (
         <AppBar position="static">
             <Toolbar>
-                <Button variant="contained" color="primary" href="/">
-                    Top News
-                </Button>
-                <Button variant="contained" color="primary" href="/categories">
-                    Categories
-                </Button>
-                <Button variant="contained" color="primary" href="/search">
-                        Search
-                </Button>
-                <Button disabled={false}>{buttons()}</Button>
+                <Grid container spacing={2} justifyContent="space-between">
+                    <Grid item >
+                        <Button variant="contained" color="primary" href="/">
+                            Top News
+                        </Button>
+                        <Button variant="contained" color="primary" href="/categories">
+                            Categories
+                        </Button>
+                        <Button variant="contained" color="primary" href="/search">
+                            Search
+                        </Button>
+                    </Grid>
+                    <Grid item>
+                        {buttons()}
+                    </Grid>
+                </Grid>
             </Toolbar>
         </AppBar>   
     );

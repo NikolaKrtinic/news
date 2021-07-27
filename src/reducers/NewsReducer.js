@@ -2,6 +2,7 @@ import {GET_NEWS, NEWS_ERROR} from '../types'
 
 const initialState = {
     news:[],
+    categoryNews: [],
     loading:true
 }
 
@@ -15,7 +16,6 @@ export default function reduce(state = initialState, action){
             ...state,
             news:action.payload,
             loading:false
-
         }
         case NEWS_ERROR:
             return{

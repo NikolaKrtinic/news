@@ -4,5 +4,5 @@ import singleNewsReducer from './SingleNewsReducer';
 
 export default combineReducers({
   newsList: newsReducer,
-  newsItem: singleNewsReducer,
+  newsItem: singleNewsReducer
 })

@@ -2,13 +2,14 @@ import {GET_NEWS, NEWS_ERROR, GET_SINGLE_NEWS, SINGLE_NEWS_ERROR} from '../types
 import axios from 'axios';
 import store from '../store';
 
-const KEY = '7d7652ea3e7249cc862c781fed45672c';
+const KEY = 'cd6b1791cda5414e8382e5bf8b7985fb';
 
-export const getNews = (country, category, query) => async dispatch => {
+export const getNews = (country, category, query, result) => async dispatch => {
     const cat = category ? `&category=${category}` : '';
     const q = query ? `&q=${query}` : '';
+    const params = new URLSearchParams([['pageSize', result ? 5 : 20]]);
     try{
-        const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}${q}${cat}&apiKey=${KEY}`);
+        const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}${q}${cat}&apiKey=${KEY}`, { params });
         const modifiedResults = res.data.articles.map((article, index) => {
             return {...article, id : index +1};
         })

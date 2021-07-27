@@ -5,24 +5,21 @@ import SearchNews from './SearchNews';
 import NewsDetails from './NewsDetails';
 import Header from './Header';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import NewsCategory from './NewsCategory';
 
 
 const App = () => {
 
     const [country, setCountry] = useState('gb');
-    const [disable, setDisable] = useState(false);
-    //const [clicked, setClicked] = useState(""); napravi callback funkciju kad se klikne da onemoguci button u hederu
 
-    function onCountryChange(country, disable){
+    function onCountryChange(country){
         setCountry(country);
-        setDisable(disable);
     }
 
         return (
             <div>
                 <BrowserRouter>
-                    
-                        <Header disable={disable} country={country} onCountryChange={onCountryChange}/>
+                        <Header country={country} onCountryChange={onCountryChange}/>
                         <Switch>
                         <Route 
                             path={["/", "/news"]} render={() => (
@@ -46,8 +43,12 @@ const App = () => {
                                 
                             />
                         )}/>
+                        <Route path="/categories/:category" render={() => (
+                            <NewsCategory
+                                country={country} 
+                            />
+                        )}/>
                         </Switch>
-                    
                 </BrowserRouter>
             </div>
         );
